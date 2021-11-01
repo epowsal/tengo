@@ -7,9 +7,9 @@ import (
 	"strings"
 	"testing"
 
-	. "github.com/d5/tengo/v2/parser"
-	"github.com/d5/tengo/v2/require"
-	"github.com/d5/tengo/v2/token"
+	. "github.com/epowsal/tengo/parser"
+	"github.com/epowsal/tengo/require"
+	"github.com/epowsal/tengo/token"
 )
 
 func TestParserError(t *testing.T) {

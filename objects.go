@@ -8,8 +8,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/d5/tengo/v2/parser"
-	"github.com/d5/tengo/v2/token"
+	"github.com/epowsal/tengo/parser"
+	"github.com/epowsal/tengo/token"
 )
 
 var (
@@ -671,7 +671,7 @@ type Float struct {
 }
 
 func (o *Float) String() string {
-	return strconv.FormatFloat(o.Value, 'f', -1, 64)
+	return strconv.FormatFloat(o.Value, 'g', -1, 64)
 }
 
 // TypeName returns the name of the type.
@@ -1027,11 +1027,11 @@ func (o *Int) BinaryOp(op token.Token, rhs Object) (Object, error) {
 			}
 			return &Int{Value: r}, nil
 		case token.Quo:
-			r := o.Value / rhs.Value
-			if r == o.Value {
-				return o, nil
+			r := float64(o.Value) / float64(rhs.Value)
+			if r == float64(o.Value) {
+				return &Float{Value: r}, nil
 			}
-			return &Int{Value: r}, nil
+			return &Float{Value: r}, nil
 		case token.Rem:
 			r := o.Value % rhs.Value
 			if r == o.Value {
